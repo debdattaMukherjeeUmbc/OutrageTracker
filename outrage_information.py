@@ -29,23 +29,20 @@ class OutrageInformation:
    
     def get_all_outrage_history(self, outrage_id):
         
-        if outrage_id in self.outrage_history:
-            return self.outrage_history[outrage_id]
+        return self.outrage_history[outrage_id]
 
 
     def update_an_outrage_status(self, outrage_id, new_outrage_status):
         
-        if outrage_id in self.latest_outrage_info:
-            self.latest_outrage_info[outrage_id].outrage_status = new_outrage_status
-            self._create_history(outrage_id)
+        self.latest_outrage_info[outrage_id].outrage_status = new_outrage_status
+        self._create_history(outrage_id)
 
 
     def end_an_outrage(self, outrage_id, end_time):
         
-        if outrage_id in self.latest_outrage_info:
-            self.latest_outrage_info[outrage_id].outrage_status = 'ENDED'
-            self.latest_outrage_info[outrage_id].end_time = end_time
-            self._create_history(outrage_id)
+        self.latest_outrage_info[outrage_id].outrage_status = 'ENDED'
+        self.latest_outrage_info[outrage_id].end_time = end_time
+        self._create_history(outrage_id)
 
     
     def _create_history(self, outrage_id):
