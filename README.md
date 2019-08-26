@@ -21,12 +21,12 @@ This tool will display outrage information.
 
 Examples of input:
 ```python
-Start time : 'Jun 1 2005 1:33PM'
-Status: 'Active and being monitored'
+Start time : Jun 1 2005 1:33PM
+Status: Active and being monitored
 ```
 
 ## Prerequisites
-Have Python 2.7.10 installed in your machine
+Have Python 2.7 installed in your machine
 
 ## Help
 Run python outrage_tracker.py - h to read about detailed help.

@@ -17,12 +17,10 @@ def main():
         if user_choice==1:
 
             all_outrage_information = outrage_information.get_all_outrage_information()
-            print "{:<40} {:<30} {:<20} {:<20} {:<20}".format('ID', 'Status','Start Time', 'End Time', 'Time Modified')
-            for k, outrage in all_outrage_information.iteritems():
-                outrage_id, outrage_status, start_time, end_time, date_modified = outrage.outrage_id, outrage.outrage_status, \
-                                                                                    outrage.start_time, outrage.end_time, outrage.date_modified
-                print "{:<40} {:<30} {:<20} {:<20} {:<20}".format(outrage_id, outrage_status, start_time, end_time, date_modified)
-
+            if not all_outrage_information:
+                print '\nCurrently you have no outrages recorded.\n'
+            else:
+                print_all_outrages(all_outrage_information)
         
         elif user_choice==2:
 
@@ -57,11 +55,7 @@ def main():
             is_valid = outrage_validator.validate_outrage_id(outrage_id)
             if is_valid:
                 all_history = outrage_information.get_all_outrage_history(outrage_id)
-                print "{:<30} {:<20} {:<20} {:<20}".format('Status', 'Start Time', 'End Time', 'Time Modified')
-                for outrage in all_history:
-                    outrage_status, start_time, end_time, date_modified = outrage.outrage_status, outrage.start_time, \
-                                                                          outrage.end_time, outrage.date_modified
-                    print "{:<30} {:<20} {:<20} {:<20}".format(outrage_status, start_time, end_time, date_modified)
+                print_all_history(all_history)
             else:
                 print '\nEnter valid outrage id.\n'
 
@@ -73,6 +67,27 @@ def main():
         else:
 
             print '\nPlease enter a valid choice.\n'
+
+
+def print_all_outrages(all_outrage_information):
+
+    print '############################################################################################################################'
+    print "{:<40} {:<30} {:<20} {:<20} {:<20}".format('ID', 'Status','Start Time', 'End Time', 'Time Modified')
+    for k, outrage in all_outrage_information.iteritems():
+        outrage_id, outrage_status, start_time, end_time, date_modified = outrage.outrage_id, outrage.outrage_status, \
+                                                                          outrage.start_time, outrage.end_time, outrage.date_modified
+        print "{:<40} {:<30} {:<20} {:<20} {:<20}".format(outrage_id, outrage_status, start_time, end_time, date_modified)
+    print '###########################################################################################################################'
+
+def print_all_history(all_history):
+
+    print '############################################################################################################################'
+    print "{:<30} {:<20} {:<20} {:<20}".format('Status', 'Start Time', 'End Time', 'Time Modified')
+    for outrage in all_history:
+        outrage_status, start_time, end_time, date_modified = outrage.outrage_status, outrage.start_time, \
+                                                              outrage.end_time, outrage.date_modified
+        print "{:<30} {:<20} {:<20} {:<20}".format(outrage_status, start_time, end_time, date_modified)
+    print '############################################################################################################################'
 
 
 if __name__ == '__main__':

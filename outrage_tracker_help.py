@@ -22,8 +22,8 @@ def outrage_tracker_help():
                                        press 6.
 
                                     Examples of input:
-                                    Start time : 'Jun 1 2005 1:33PM'
-                                    Status: 'Active and being monitored'
+                                    Start time : Jun 1 2005 1:33PM
+                                    Status: Active and being monitored
                                     ------------------------------------------------------------
                                     ''',
                                     description='''

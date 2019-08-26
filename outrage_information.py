@@ -4,7 +4,11 @@ import uuid
 from outrage_details import OutrageDetails
 
 
-class OutrageInformation:
+class OutrageInformation(object):
+    """
+    This class records outrage information. The latest outrage denotes all outrages that have been reported till now.
+    The outrage history stores all information related to updates made on an outrage.
+    """
     
     def __init__(self):
         
@@ -12,6 +16,9 @@ class OutrageInformation:
         self.outrage_history = {}
 
     def add_outrage_information(self, start_time, outrage_status):
+        """
+        Adds a new outrage.
+        """
         
         end_time = 'CURRENT'
         outrage_id = str(uuid.uuid4())
@@ -23,23 +30,35 @@ class OutrageInformation:
 
 
     def get_all_outrage_information(self):
+        """
+        Returns all outrages recorded till now.
+        """
         
         return self.latest_outrage_info
 
    
     def get_all_outrage_history(self, outrage_id):
+        """
+        Returns all history related to the outrage_id supplied.
+        """
         
         return self.outrage_history[outrage_id]
 
 
     def update_an_outrage_status(self, outrage_id, new_outrage_status):
+        """
+        Updates the status of an outrage.
+        """
         
         self.latest_outrage_info[outrage_id].outrage_status = new_outrage_status
+        self.latest_outrage_info[outrage_id].date_modified = self._get_current_time()
         self._create_history(outrage_id)
 
 
     def end_an_outrage(self, outrage_id, end_time):
-        
+        """
+        Ends an outrage by flipping the status to ENDED.
+        """
         self.latest_outrage_info[outrage_id].outrage_status = 'ENDED'
         self.latest_outrage_info[outrage_id].end_time = end_time
         self._create_history(outrage_id)
@@ -58,5 +77,6 @@ class OutrageInformation:
 
     def _get_current_time(self):
         
-        return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        return datetime.now().strftime('%b %d %Y %I:%M%p')
+
 

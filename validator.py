@@ -1,6 +1,6 @@
 
 
-class OutrageInformationValidator:
+class OutrageInformationValidator(object):
 
 	def __init__(self, outrage_info):
 		self.outrage_info = outrage_info
